@@ -3,24 +3,6 @@ const qrcode = require('qr-image');
 const express = require("express");
 const path = require('path');
 
-const app = express();
-const port = process.env.PORT || 3001;
-
-var public = path.join(__dirname, 'public');
-
-// viewed at http://localhost:8080
-app.get('/', function(req, res) {
-    res.sendFile(path.join(public, 'index.html'));
-});
-
-app.use('/', express.static(public));
-
-
-const server = app.listen(port, () => console.log(`Express app listening on port ${port}!`));
-
-server.keepAliveTimeout = 120 * 1000;
-server.headersTimeout = 120 * 1000;
-
 const client = new Client();
 
 client.initialize();
@@ -64,3 +46,22 @@ client.on('message_create', async (msg) => {
 });
 
 client.initialize();
+
+const app = express();
+const port = process.env.PORT || 3001;
+
+var public = path.join(__dirname, 'public');
+
+// viewed at http://localhost:8080
+app.get('/', function(req, res) {
+    res.sendFile(path.join(public, 'index.html'));
+});
+
+app.use('/', express.static(public));
+
+
+const server = app.listen(port, () => console.log(`Express app listening on port ${port}!`));
+
+server.keepAliveTimeout = 120 * 1000;
+server.headersTimeout = 120 * 1000;
+
