@@ -2,6 +2,7 @@ const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 const qrcode = require('qr-image');
 const express = require("express");
 const path = require('path');
+const prefix = ".";
 
 const client = new Client();
 
